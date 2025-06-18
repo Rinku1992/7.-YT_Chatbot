@@ -10,6 +10,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+import os
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
 # ---------------- Streamlit UI ----------------
 st.title("🎥 YouTube Video QA with LangChain + OpenAI")
 
