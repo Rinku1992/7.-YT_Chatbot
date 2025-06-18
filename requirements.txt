@@ -1,0 +1,8 @@
+streamlit
+youtube-transcript-api
+langchain
+langchain-openai
+langchain-community
+python-dotenv
+pandas
+numpy
