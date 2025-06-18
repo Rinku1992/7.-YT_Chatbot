@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # ---------------- Streamlit UI ----------------
 st.title("🎥 YouTube Video QA with LangChain + OpenAI")
@@ -38,7 +38,7 @@ if st.button("Run RAG Pipeline"):
         # ---------------- RAG Pipeline ----------------
         splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         chunks = splitter.create_documents([transcript])
-        embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+        embeddings = OpenAIEmbeddings(model="text-embedding-3-small",openai_api_key=openai_api_key)
         vector_store = FAISS.from_documents(chunks, embeddings)
         retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": 4})
 
